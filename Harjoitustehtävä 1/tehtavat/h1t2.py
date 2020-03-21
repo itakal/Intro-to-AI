@@ -1,5 +1,5 @@
 import time
-
+import copy
 from IPython.core.display import clear_output
 
 
@@ -153,17 +153,17 @@ def laske_hamming_etäisyys(tila, tavoitetila):
     """
     # -------- TÄHÄN SINUN KOODI --------
     # Alusta muuttuja hamming_arvo arvolla 0
-
+    hamming_arvo = 0
     # Käy silmukassa läpi laatan arvot 1-8
-
-    # Selvitä tilalle ja tavoitetilalle, missä kohtaa LISTAA laatan arvo on (esim. tila_indeksi viittaa tilan laatan arvon indeksiin listassa. Vihje: .index())
+    for laatan_arvo in range(1, 9):
+        # Selvitä tilalle ja tavoitetilalle, missä kohtaa LISTAA laatan arvo on (esim. tila_indeksi viittaa tilan laatan arvon indeksiin listassa. Vihje: .index())
 
     # Jos tilan laatan arvon indeksi on eri kuin tavoitetilan vastaavan laatan arvon indeksi
-
+        if tila.index(laatan_arvo) != tavoitetila.index(laatan_arvo):
     # Kasvata muuttujan hamming_arvo arvoa 1:llä
-
+            hamming_arvo += 1
     # Palauta lopuksi muuttuja hamming_arvo
-
+    return hamming_arvo
     # -----------------------------------
 
 
@@ -173,15 +173,16 @@ def laske_city_block_etäisyys(tila, tavoitetila):
     """
     # -------- TÄHÄN SINUN KOODISI --------
     # Alusta muuttuja city_block_arvo arvolla 0
-
+    city_block_arvo = 0
     # Käy silmukassa läpi laatan arvot 1-8
-
+    for laatan_arvo in range(1, 9):
     # Selvitä tilalle ja tavoitetilalle, missä kohtaa MATRIISIA laatan arvo on (esim. tila_x viittaa tilan laatan arvon vaakasuuntaiseen koordinaattiin)
-
+        (tila_x, tila_y) = (tila.index(laatan_arvo) // 3, tila.index(laatan_arvo) % 3)
+        (tavoitetila_x, tavoitetila_y) = (tavoitetila.index(laatan_arvo) // 3, tavoitetila.index(laatan_arvo) % 3)
     # Laske jokaiselle laatalle vaakasuuntainen ja pystysuuntainen itseisarvoistettu etäisyys ja lisää ne muuttujaan city-block_arvo
-
+        city_block_arvo += ((tavoitetila_x - tila_x) + (tavoitetila_y - tila_y))
     # Palauta lopuksi muuttuja city_block_arvo
-
+    return city_block_arvo
     # -------------------------------------
 
 
